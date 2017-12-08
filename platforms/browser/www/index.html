@@ -49,7 +49,10 @@
         <!-- Latest compiled JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>    
+        <script type="text/javascript" src="js/musicplayer.js"></script>
+        <title>शिव स्तोत्र</title>
     </head>
 
     <body>
@@ -57,67 +60,89 @@
             <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-info">
                 <!-- Brand/logo -->
                 <a class="navbar-brand" href="#">
-                    <h4>शिव स्तोत्र</h4>
+                    <h4> विभिन्न स्तोत्रों का संग्रह</h4>
                 </a>           
             </nav>
-            <div class="container-fluid" style="margin-top:50px;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div id="demo" class="carousel slide" data-ride="carousel">
-
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators">
-                                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                                <li data-target="#demo" data-slide-to="1"></li>
-                                <li data-target="#demo" data-slide-to="2"></li>
-                                <li data-target="#demo" data-slide-to="3"></li>
-                            </ul>
-
-                            <!-- The slideshow -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="img/1.jpg" alt="Shiv" class="img-responsive" style="width:100%;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/2.jpg" alt="Shiv" class="img-responsive" style="width:100%;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/3.jpg" alt="Shiv" class="img-responsive" style="width:100%;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/4.jpg" alt="Shiv" class="img-responsive" style="width:100%;">
-                                </div>
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#demo" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </a>
-
+            <div class="container-fluid" style="margin-top:90px;"> 
+                <div class="example">
+                    <div class="playlist">
+                        <div data-cover="data/1.jpg" data-artist=""><a href="data/AdityaHriday.mp3"><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> आदित्य ह्रदय स्तोत्र</a></div>  
+                        <div data-cover="data/sh1.jpg" data-artist="">
+                            <a href="data/ShivaLingastakam.mp3"><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> शिव लिंगास्टकम स्तोत्र</a>
                         </div>
+                        <div data-cover="data/sh2.jpg" data-artist=""><a href="data/ShivPanchaksharStotra.mp3"></a><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> शिव पंचाक्षर स्तोत्र</div>
+                        <div data-cover="data/sh3.jpg" data-artist=""><a href="data/ShivPanchaksharStotra.mp3"></a><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i>  वेदसार शिवस्तवः  स्तोत्र</div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-success" id="play1"><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> शिव लिंगास्टकम स्तोत्र</li>
-                            <li class="list-group-item list-group-item-danger" id="pause1"><i class="fa fa-stop-circle-o fa-1x" aria-hidden="true"></i> शिव लिंगास्टकम स्तोत्र</li>
-                            <li class="list-group-item list-group-item-success" id="play2"><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> शिव पंचाक्षर स्तोत्र </li>
-                            <li class="list-group-item list-group-item-danger" id="pause2"><i class="fa fa-stop-circle-o fa-1x" aria-hidden="true"></i> शिव पंचाक्षर स्तोत्र </li>
-                            <li class="list-group-item list-group-item-success" id="play3"><i class="fa fa-play-circle-o fa-1x" aria-hidden="true"></i> वेदसार शिव स्तोत्र </li>                                            
-                            <li class="list-group-item list-group-item-danger" id="pause3"><i class="fa fa-stop-circle-o fa-1x" aria-hidden="true"></i> वेदसार शिव स्तोत्र </li>  
-                        </ul>
-                    </div>
-                </div>
+
+                </div>                
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
+        </script>
+
+        <script>
+            $(".example").musicPlayer({
+                playlistItemSelector: 'div',
+                elements: ['artwork', 'information', 'controls', 'progress', 'time', 'volume'], // ==> This will display in  the order it is inserted
+                //elements: [ 'controls' , 'information', 'artwork', 'progress', 'time', 'volume' ],
+                //controlElements: ['backward', 'play', 'forward', 'stop'],
+                //timeElements: ['current', 'duration'],
+                //timeSeparator: " : ", // ==> Only used if two elements in timeElements option
+                //infoElements: [  'title', 'artist' ],  
+
+                //volume: 10,
+                //autoPlay: true,
+                //loop: true,
+
+                onPlay: function () {
+                    $('body').css('background', '#141942');
+                },
+                onPause: function () {
+                    $('body').css('background', '#141942');
+                },
+                onStop: function () {
+                    $('body').css('background', '#141942');
+                },
+                onFwd: function () {
+                    $('body').css('background', '#141942');
+                },
+                onRew: function () {
+                    $('body').css('background', '#141942');
+                },
+                volumeChanged: function () {
+                    $('body').css('background', '#141942');
+                },
+                seeked: function () {
+                    $('body').css('background', '#141942');
+                },
+                trackClicked: function () {
+                    $('body').css('background', '#141942');
+                },
+                onMute: function () {
+                    $('body').css('background', '#141942');
+                },
+            });
+
+            $(".example2").musicPlayer({
+                //volume: 10,
+                //elements: ['artwork', 'controls', 'progress', 'time', 'volume'],
+                //playerAbovePlaylist: false,
+                onLoad: function () {
+                    //Add Audio player
+                    plElem = "<div class='pl'></div>";
+                    $('.example2').find('.player').append(plElem);
+                    // show playlist
+                    $('.pl').click(function (e) {
+                        e.preventDefault();
+                        $('.example2').find('.playlist').toggleClass("hidden");
+                    });
+                },
+            });
+
+
         </script>
     </body>
 
